@@ -36,6 +36,7 @@ public class RandomObsticles : MonoBehaviour {
 				thisObj.name = "Asteroid" + i.ToString();
 				float tmp = Random.Range(ObsticleMinSize,ObsticleMaxSize);
 				thisObj.transform.localScale = new Vector3(tmp * thisObj.transform.localScale.x,tmp* thisObj.transform.localScale.y,tmp* thisObj.transform.localScale.z);
+				//thisObj.GetComponent<Renderer>().material.color = Color.clear;
 				
 				AddRandomForce(thisObj);
 			}
@@ -52,11 +53,14 @@ public class RandomObsticles : MonoBehaviour {
 	{
 		Debug.Log("Collided with sphere");
 		
+		
 		GameObject obsticle = other.gameObject;
 		
 		Vector3 heading = playerPos - obsticle.transform.position ;
 		
 		obsticle.transform.position += 1.9f * heading;
+		
+		//obsticle.GetComponent<Renderer>().material.color = new Color(0,0,0,0);
 		
 		//Vector3 randomDirection = new Vector3(Random.value, Random.value, Random.value);
 		

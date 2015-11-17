@@ -15,9 +15,9 @@ public class SoundLoader : MonoBehaviour {
 		source = this.GetComponent<AudioSource>();
 		music = new List<AudioClip>();
 		
-		allMusicFiles = Directory.GetFiles(Application.dataPath+@"/Sounds",".mp3",SearchOption.AllDirectories);
+		//allMusicFiles = Directory.GetFiles(Application.dataPath+@"/Sounds",".mp3",SearchOption.AllDirectories);
 		
-		var musicTest = GetAtPath<AudioClip>(@"Sounds/NitronicRush_OST/");
+		var musicTest = GetAtPath<AudioClip>(@"Sounds/NitronicRush_OST");
 		
 		foreach (object obj in musicTest)
 		{
