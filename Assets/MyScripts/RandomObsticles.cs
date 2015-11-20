@@ -82,7 +82,7 @@ public class RandomObsticles : MonoBehaviour {
 				 Vector3 aimPos = playerPos + (transform.forward * (Random.Range(0,AttackDistance)));
 				 objectToMove.GetComponent<Rigidbody>().AddForce(aimPos* 
 																((ObsticleSpeed*100)/objectToMove.transform.localScale.x));
-				 Debug.Log(aimPos);
+				 //Debug.Log(aimPos);
 			}
 			else
 			{
