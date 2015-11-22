@@ -3,6 +3,7 @@ using System.Collections;
  
 public class ShipController : MonoBehaviour
 {
+    LevelOptions levelController;
     //speed stuff
     float speed;
     public int cruiseSpeed;
@@ -10,9 +11,7 @@ public class ShipController : MonoBehaviour
     public int minSpeed;
     public int maxSpeed;
     float accel, decel;
-    
-    bool move; //Actually move or not.
- 
+    bool move,alive; //Actually move or not.
     //turning stuff
     Vector3 angVel;
     Vector3 shipRot;
@@ -24,13 +23,35 @@ public class ShipController : MonoBehaviour
     
     void Start()
     {
-        move = true;
+        levelController = (LevelOptions)GameObject.Find("GameController").GetComponent<LevelOptions>();
+        if(levelController.LevelID != 0)
+        {
+            GetComponent<SphereCollider>().enabled = false;
+            move = true;
+        }
+        else
+        {
+            GetComponent<SphereCollider>().enabled = true;
+            move = false;
+        }
+        alive = true;
         speed = cruiseSpeed;
         part = GameObject.Find("Explosion").GetComponent<ParticleSystem>();
     }
  
     void FixedUpdate()
     {
+
+        if(levelController.LevelID != 0 && alive)
+        {
+            GetComponent<SphereCollider>().enabled = false;
+            move = true;
+        }
+        else
+        {
+            GetComponent<SphereCollider>().enabled = true;;
+            move = false;
+        }
  
         if(move)
         {
@@ -141,6 +162,12 @@ public class ShipController : MonoBehaviour
                 Destroy(this);
             }
         }
+        else
+        {
+            //moves camera 
+            //Connecting this to the speed of the ship, because that always changes smoothly
+            transform.GetChild(0).localPosition = cameraOffset;
+        }
     }
     
     void Awake()
@@ -150,22 +177,27 @@ public class ShipController : MonoBehaviour
  
     void Update()
     {
-        if(!move && !part.IsAlive())
+        if(!alive && !part.IsAlive())
         {
             Debug.Log("Ended");
+            alive = true;
+            GameObject.Find("PlayerMesh").GetComponent<MeshRenderer>().enabled = true;
+            
+            levelController.SetLevel(0);
         }
     }
     
     void OnCollisionEnter(Collision other)
     {
         
-        if(other.gameObject.tag == "Obsticle")
+        if(other.gameObject.tag == "Obsticle" && levelController.LevelID != 0)
         {
             Debug.Log(other.gameObject.name + " Collided with player");
             //GameObject player = GameObject.Find("PlayerObject");
+            alive = false;
             move = false;
             Destroy(other.gameObject);
-            Destroy(GameObject.Find("PlayerMesh"));
+            GameObject.Find("PlayerMesh").GetComponent<MeshRenderer>().enabled = false;
             this.GetComponent<AudioSource>().Play();
             part.Play();
         }

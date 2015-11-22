@@ -48,17 +48,15 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\FPS.cs" />
-     <Compile Include="Assets\MyScripts\AsteroidCollision.cs" />
+     <Compile Include="Assets\MyScripts\AdjustColSize.cs" />
      <Compile Include="Assets\MyScripts\CollectableGeneration.cs" />
      <Compile Include="Assets\MyScripts\CollectionScript.cs" />
+     <Compile Include="Assets\MyScripts\FPS.cs" />
      <Compile Include="Assets\MyScripts\FadeIn.cs" />
-     <Compile Include="Assets\MyScripts\LoadLevel.cs" />
-     <Compile Include="Assets\MyScripts\MovementScript.cs" />
+     <Compile Include="Assets\MyScripts\LevelOptions.cs" />
+     <Compile Include="Assets\MyScripts\MenuDisplay.cs" />
      <Compile Include="Assets\MyScripts\RandomObsticles.cs" />
-     <Compile Include="Assets\MyScripts\Restart.cs" />
      <Compile Include="Assets\MyScripts\ShipController.cs" />
-     <Compile Include="Assets\MyScripts\SmoothFollow.cs" />
      <Compile Include="Assets\MyScripts\SoundLoader.cs" />
      <Compile Include="Assets\MyScripts\SpeedLimiter.cs" />
      <None Include="Assets\Standard Assets\Effects\GlassRefraction\Shaders\GlassStainedBumpDistort.shader" />

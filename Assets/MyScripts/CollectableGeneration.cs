@@ -3,49 +3,75 @@ using System.Collections;
 
 public class CollectableGeneration : MonoBehaviour {
 	
-	public int CollectableNumber = 0;
+	int currentLevel;
+	int currentCollect;
+	LevelOptions levelController;
+	int CollectableNumber = 0;
 	public float buffer = 0;
 	float radiusCol = 100;
 	public GameObject Collectable;
 	
-	GameObject[] Obsticles;
+	//GameObject[] Obsticles;
 	
 	// Use this for initialization
 	void Start () {
-		Obsticles = GameObject.FindGameObjectsWithTag("Obsticle");
+		levelController = (LevelOptions)GameObject.Find("GameController").GetComponent<LevelOptions>();
+		CollectableNumber = levelController.CollectableNumber;
+		//Obsticles = GameObject.FindGameObjectsWithTag("Obsticle");
 		radiusCol = this.GetComponent<SphereCollider>().radius;
+		currentCollect = CollectableNumber;
 		for(int i = 0; i<CollectableNumber;i++)
 		{
-			Retry:
-			
-			Object thisObj = null;
-			Vector3 targetPosition = NewPosition();
-			//float checkRadius = Collectable.GetComponent<Renderer>().bounds.extents.magnitude;
-			//var checkResult = Physics.OverlapSphere( targetPosition, checkRadius,LayerMask.NameToLayer("BounceLayer") );
-			//if (checkResult.Length == 0) {
-				// all clear!
-			
-			thisObj = Instantiate( Collectable, targetPosition, new Quaternion(0,0,0,1));
-			
-			thisObj.name = "Collectable"+i.ToString();
-			//Debug.LogError("Collectable created at " + targetPosition.ToString());
-			//}
-			//else
-			//{
-				//Debug.Log("Collectable Generation Failed");
-			//}
+			AddCollectable(i.ToString());
 		}
 	}
 	
-	// Update is called once per frame
-	void Update () {
+	void AddCollectable(string ID)
+	{
+		Object thisObj = null;
+			Vector3 targetPosition = NewPosition();
+			
+			thisObj = Instantiate( Collectable, targetPosition, new Quaternion(0,0,0,1));
+			
+			thisObj.name = "Collectable"+ID;
+	}
 	
+	void RemoveCollectable(string ID)
+	{
+		Destroy(GameObject.Find("Collectable"+ID));
+	}
+	
+	// Update is called once per frame
+	void FixedUpdate () {
+		if(levelController.LevelID != currentLevel)
+			LevelChange();
+	}
+	
+	void LevelChange()
+	{
+		int collectChange = levelController.CollectableNumber - currentCollect;
+		if(collectChange > 0)
+		{
+			while(currentCollect < levelController.CollectableNumber)
+			{
+				AddCollectable(currentCollect.ToString());
+				currentCollect++;
+			}
+		}
+		else
+		{
+			while(currentCollect > levelController.CollectableNumber)
+			{
+				RemoveCollectable(currentCollect.ToString());
+				currentCollect--;
+			}
+		}
+		currentLevel = levelController.LevelID;
 	}
 	
 	void OnTriggerExit(Collider other)
 	{
 		Debug.Log("Collectable Collided with sphere");
-		
 		
 		GameObject obsticle = other.gameObject;
 		
@@ -53,19 +79,6 @@ public class CollectableGeneration : MonoBehaviour {
 		
 		obsticle.transform.position += 1.9f * heading;
 		
-		//obsticle.GetComponent<Renderer>().material.color = new Color(0,0,0,0);
-		
-		//Vector3 randomDirection = new Vector3(Random.value, Random.value, Random.value);
-		
-		//obsticle.transform.Rotate(new Vector3(RandomDirection(),RandomDirection(),RandomDirection()));
-		
-		//AddRandomForce(obsticle);
-		
-	}
-	
-	public void SetCollectableAmount(int amount)
-	{
-		CollectableNumber = amount;
 	}
 	
 	Vector3 NewPosition()
@@ -75,7 +88,7 @@ public class CollectableGeneration : MonoBehaviour {
 						(pos.y > - buffer && pos.y < buffer) ||
 						(pos.z > - buffer && pos.z < buffer))
 				{
-					pos = Random.insideUnitSphere * radiusCol;
+					pos = (Random.insideUnitSphere * radiusCol) + transform.position;
 				}
 		 return pos;
 	 }
