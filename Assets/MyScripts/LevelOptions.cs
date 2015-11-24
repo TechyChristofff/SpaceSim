@@ -105,7 +105,7 @@ public class LevelOptions : MonoBehaviour {
 	public float AsteroidSpeed{get{return CurrentLevel._mAsteroidSpeed;}}
 	public int CollectableNumber{get{return CurrentLevel._mCollectableNumber;}}
 	public int CollecableNeeded{get{return CurrentLevel._mCollectableNeeded;}}
-	public float SphereRadius {get {return CurrentLevel._mSphereradius;}}
+	//public float SphereRadius {get {return CurrentLevel._mSphereradius;}}
 	public int MoveChance{get{return CurrentLevel._mMoveChance;}}
 	public int AttackChance{get{return CurrentLevel._mAttackChance;}}
 }

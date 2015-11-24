@@ -137,30 +137,15 @@ public class ShipController : MonoBehaviour
             float sqrOffset = transform.GetChild(1).localPosition.sqrMagnitude;
             Vector3 offsetDir = transform.GetChild(1).localPosition.normalized;
     
-            try
-            {
-                if(float.IsNaN(sqrOffset) || float.IsInfinity(sqrOffset))
-                {
-                    sqrOffset = 10;
-                }
-                
-                Vector3 tmp = -offsetDir * sqrOffset * 20 * Time.fixedDeltaTime;
-                Vector3 tmp2 = (offsetDir * sqrOffset * 50 + transform.GetChild(1).forward * speed) * Time.fixedDeltaTime;
-                //this takes care of realigning after collisions, where the ship gets displaced due to its rigidbody.
-                //I'm pretty sure this is the best way to do it (have the ship and the rig move toward their mutual center)
-                this.transform.GetChild(1).Translate(-offsetDir * sqrOffset * 20 * Time.fixedDeltaTime);
-                
-                //(**************** this ***************) is what actually makes the whole ship move through the world!
-                this.transform.Translate((offsetDir * sqrOffset * 50 + transform.GetChild(1).forward * speed) * Time.fixedDeltaTime, Space.World);
-        
-                //comment this out for starfox, remove the x and z components for shadows of the empire, and leave the whole thing for free roam
-                transform.Rotate(shipRot.x * Time.fixedDeltaTime, (shipRot.y * Mathf.Abs(shipRot.y) * .02f) * Time.fixedDeltaTime, shipRot.z * Time.fixedDeltaTime);
-            }
-            catch(MyException ex)
-            {
-                Debug.Log(ex.Message);
-                Destroy(this);
-            }
+            //this takes care of realigning after collisions, where the ship gets displaced due to its rigidbody.
+            //I'm pretty sure this is the best way to do it (have the ship and the rig move toward their mutual center)
+            this.transform.GetChild(1).Translate(-offsetDir * sqrOffset * 20 * Time.fixedDeltaTime);
+            
+            //(**************** this ***************) is what actually makes the whole ship move through the world!
+            this.transform.Translate((offsetDir * sqrOffset * 50 + transform.GetChild(1).forward * speed) * Time.fixedDeltaTime, Space.World);
+    
+            //comment this out for starfox, remove the x and z components for shadows of the empire, and leave the whole thing for free roam
+            transform.Rotate(shipRot.x * Time.fixedDeltaTime, (shipRot.y * Mathf.Abs(shipRot.y) * .02f) * Time.fixedDeltaTime, shipRot.z * Time.fixedDeltaTime);
         }
         else
         {

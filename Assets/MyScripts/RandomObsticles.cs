@@ -113,7 +113,7 @@ public class RandomObsticles : MonoBehaviour {
 						(pos.y > - buffer && pos.y < buffer) ||
 						(pos.z > - buffer && pos.z < buffer))
 				{
-					pos = (Random.insideUnitSphere * radiusCol) + playerPos;
+					pos = (Random.insideUnitSphere * radiusCol);
 				}
 		 return pos;
 	 }

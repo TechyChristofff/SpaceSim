@@ -4,7 +4,7 @@ using System.Collections;
 public class FadeIn : MonoBehaviour {
 
 	GameObject Player;
-	Renderer renderer;
+	new Renderer renderer;
 	Color colour;
 	public float invisibleDistance;
 	public float visibleDistance;
