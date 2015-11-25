@@ -36,10 +36,10 @@ public class LevelOptions : MonoBehaviour {
 		    Easy._mLevelId = 1;
 			Easy._mLevelLabel = "Easy";
 			Easy._mLevelTime = 120;
-			Easy._mAsteroidCount = 1;
+			Easy._mAsteroidCount = 600;
 			Easy._mAsteroidSpeed = 400;
 			Easy._mCollectableNeeded = 40;
-			Easy._mCollectableNumber = 0;
+			Easy._mCollectableNumber = 100;
 			Easy._mSphereradius = 4500;
 			Easy._mMoveChance = 3;
 			Easy._mAttackChance = 4;

@@ -22,9 +22,9 @@ public class RandomObsticles : MonoBehaviour {
 		levelController = (LevelOptions)GameObject.Find("GameController").GetComponent<LevelOptions>();
 		ObsticleNumber = levelController.AsteroidCount;
 		ObsticleSpeed = levelController.AsteroidSpeed;
+		playerPos = GameObject.Find("PlayerObject").transform.position;
 		if(Obs != null)
 		{
-			playerPos =this.transform.position;
 			radiusCol = this.GetComponent<SphereCollider>().radius;
 			currentObs = ObsticleNumber;
 			for (int i = 0; i < ObsticleNumber; i++)
@@ -56,21 +56,23 @@ public class RandomObsticles : MonoBehaviour {
 		if(levelController.LevelID != currentLevel)
 			LevelChange();
 		
-		playerPos = this.transform.position;
+		//playerPos = this.transform.position;
 	}
 	
-	void OnTriggerExit(Collider other)
+	void OnCollisionExit(Collision other)
 	{
-		if(other.tag == "Obsticle")
-		{
-			Debug.Log(other.name);
+		//if(other.tag == "Obsticle")
+		//{
+			//Debug.Log(other.name);
 			Debug.Log("Collided with sphere");
+			
+			//string name = other.name;
 			
 			GameObject obsticle = other.gameObject;
 			
 			Vector3 heading = playerPos - obsticle.transform.position ;
 			
-			obsticle.transform.position += 1.9f * heading;
+			obsticle.transform.position += (heading * 1.85f);
 			
 			//obsticle.GetComponent<Renderer>().material.color = new Color(0,0,0,0);
 			
@@ -79,7 +81,7 @@ public class RandomObsticles : MonoBehaviour {
 			obsticle.transform.Rotate(new Vector3(RandomDirection(),RandomDirection(),RandomDirection()));
 			
 			AddRandomForce(obsticle);
-		}
+		//}
 		
 	}
 	

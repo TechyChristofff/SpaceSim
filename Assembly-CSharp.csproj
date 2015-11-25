@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\MyScripts\CollectableGeneration.cs" />
+     <Compile Include="Assets\MyScripts\Collections.cs" />
      <Compile Include="Assets\MyScripts\FadeIn.cs" />
      <Compile Include="Assets\MyScripts\LevelOptions.cs" />
      <Compile Include="Assets\MyScripts\MenuDisplay.cs" />

@@ -172,7 +172,7 @@ public class ShipController : MonoBehaviour
         }
     }
     
-    void OnCollisionEnter(Collision other)
+     void OnCollisionEnter(Collision other)
     {
         
         if(other.gameObject.tag == "Obsticle" && levelController.LevelID != 0)
@@ -185,6 +185,10 @@ public class ShipController : MonoBehaviour
             GameObject.Find("PlayerMesh").GetComponent<MeshRenderer>().enabled = false;
             this.GetComponent<AudioSource>().Play();
             part.Play();
+        }
+        else if(other.gameObject.tag == "Collectable" && levelController.LevelID != 0)
+        {
+            //Debug.
         }
     }
     
