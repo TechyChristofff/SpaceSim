@@ -43,44 +43,48 @@ public class CollectableGeneration : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-		if(levelController.LevelID != currentLevel)
+		//if(levelController.LevelID != currentLevel)
 			LevelChange();
 	}
 	
 	void LevelChange()
 	{
 		int collectChange = levelController.CollectableNumber - currentCollect;
-		if(collectChange > 0)
-		{
-			while(currentCollect < levelController.CollectableNumber)
-			{
-				AddCollectable(currentCollect.ToString());
-				currentCollect++;
-			}
-		}
-		else
-		{
-			while(currentCollect > levelController.CollectableNumber)
-			{
-				RemoveCollectable(currentCollect.ToString());
-				currentCollect--;
-			}
-		}
-		currentLevel = levelController.LevelID;
+        if (collectChange != 0)
+        {
+            Debug.Log("Changing Collectable Count");
+            if (collectChange > 0)
+            {
+                while (currentCollect < levelController.CollectableNumber)
+                {
+                    AddCollectable(currentCollect.ToString());
+                    currentCollect++;
+                }
+            }
+            else
+            {
+                while (currentCollect > levelController.CollectableNumber)
+                {
+                    RemoveCollectable(currentCollect.ToString());
+                    currentCollect--;
+                }
+            }
+        }
+		//currentLevel = levelController.LevelID;
 	}
 	
 	
-	void OnTriggerExit(Collider other)
-	{
-		Debug.Log("Collectable Collided with sphere");
+    //void OnTriggerExit(Collider other)
+    //{
+    //    Debug.Log("Collectable Collided with sphere");
 		
-		GameObject obsticle = other.gameObject;
+    //    GameObject obsticle = other.gameObject;
 		
-		Vector3 heading = GameObject.Find("PlayerObject").gameObject.transform.position - obsticle.transform.position ;
+    //    Vector3 heading = GameObject.Find("PlayerObject").gameObject.transform.position - obsticle.transform.position ;
 		
-		obsticle.transform.position += 1.9f * heading;
+    //    obsticle.transform.position += 1.9f * heading;
 		
-	}
+    //}
 	
 	Vector3 NewPosition()
 	 {

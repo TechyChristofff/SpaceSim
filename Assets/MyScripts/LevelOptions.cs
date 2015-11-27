@@ -68,7 +68,7 @@ public class LevelOptions : MonoBehaviour {
 			Hard._mMoveChance = 2;
 			Hard._mAttackChance = 2;
 		#endregion
-		SetLevel(0);
+            SetLevel(0, "Initial Level Load");
 	}
 	void Start () {
 		
@@ -78,9 +78,38 @@ public class LevelOptions : MonoBehaviour {
 	void Update () {
 	
 	}
-	
-	public void SetLevel(int levelValue)
+
+    public void SetLevel(int levelValue)
+    {
+        switch (levelValue)
+        {
+            case 0:
+                { //MainMenu
+                    CurrentLevel = Menu;
+                } break;
+            case 1:
+                {//Easy
+                    CurrentLevel = Easy;
+                } break;
+            case 2:
+                {//Med
+                    CurrentLevel = Med;
+                } break;
+            case 3:
+                {//Hard
+                    CurrentLevel = Hard;
+                } break;
+        }
+    }
+
+    public void LevelChangeReason(string changeReason)
+    {
+        Debug.Log(changeReason);
+    }
+
+	public void SetLevel(int levelValue, string changeReason)
 	{
+        Debug.Log(changeReason);
 		switch(levelValue)
 		{
 			case 0: { //MainMenu
