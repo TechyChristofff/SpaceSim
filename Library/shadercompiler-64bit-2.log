@@ -135,3 +135,6 @@ Cmd: compileSnippet
   api=0 type=1 insize=816 outsize=6 kw=DIRECTIONAL_COOKIE SHADOWS_SCREEN _METALLICGLOSSMAP _NORMALMAP pd= ok=1
 Cmd: compileSnippet
   api=0 type=1 insize=816 outsize=6 kw=POINT_COOKIE SHADOWS_CUBE _METALLICGLOSSMAP _NORMALMAP pd= ok=1
+End of pipe
+
+Quitting shader compiler process

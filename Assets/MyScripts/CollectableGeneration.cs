@@ -69,6 +69,7 @@ public class CollectableGeneration : MonoBehaviour {
 		currentLevel = levelController.LevelID;
 	}
 	
+	
 	void OnTriggerExit(Collider other)
 	{
 		Debug.Log("Collectable Collided with sphere");

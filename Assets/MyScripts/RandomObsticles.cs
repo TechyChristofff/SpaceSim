@@ -61,27 +61,17 @@ public class RandomObsticles : MonoBehaviour {
 	
 	void OnCollisionExit(Collision other)
 	{
-		//if(other.tag == "Obsticle")
-		//{
-			//Debug.Log(other.name);
 			Debug.Log("Collided with sphere");
-			
-			//string name = other.name;
 			
 			GameObject obsticle = other.gameObject;
 			
 			Vector3 heading = playerPos - obsticle.transform.position ;
 			
-			obsticle.transform.position += (heading * 1.85f);
-			
-			//obsticle.GetComponent<Renderer>().material.color = new Color(0,0,0,0);
-			
-			//Vector3 randomDirection = new Vector3(Random.value, Random.value, Random.value);
+			obsticle.transform.position += (heading * 1.9f);
 			
 			obsticle.transform.Rotate(new Vector3(RandomDirection(),RandomDirection(),RandomDirection()));
 			
 			AddRandomForce(obsticle);
-		//}
 		
 	}
 	
@@ -119,7 +109,7 @@ public class RandomObsticles : MonoBehaviour {
 						(pos.y > - buffer && pos.y < buffer) ||
 						(pos.z > - buffer && pos.z < buffer))
 				{
-					pos = (Random.insideUnitSphere * radiusCol);
+					pos = (Random.insideUnitSphere * radiusCol) + transform.position;
 				}
 		 return pos;
 	 }

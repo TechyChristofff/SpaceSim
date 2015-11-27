@@ -19,24 +19,30 @@ public class MenuDisplay : MonoBehaviour {
 		{
 			if(transform.localPosition.y <0)
 			{
-				display.localPosition = display.localPosition - new Vector3(0,-Time.deltaTime * fadeSpeed, 0);
+				display.localPosition -= new Vector3(0,-Time.deltaTime * fadeSpeed, 0);
+				
 			}
 			else
 			{
 				display.localPosition = new Vector3(0,0,0);
 			}
+			Debug.Log(levelController.LevelID.ToString());
 		}
 		else
 		{
-			if(transform.position.y > -offset)
+			if(transform.localPosition.y > -offset)
 			{
-				display.localPosition = display.localPosition - new Vector3(0,Time.deltaTime * fadeSpeed, 0);
+				display.localPosition -= new Vector3(0,Time.deltaTime * fadeSpeed, 0);
+				//Debug.Log(Time.time.ToString());
 			}
 			else
 			{
 				display.localPosition = new Vector3(0,-offset,0);
+				Debug.Log("LOOK I RAN");
 			}
+			Debug.Log(levelController.LevelID.ToString());
 			//ModifyChildren(false);
+			Debug.Log(display.localPosition.ToString());
 		}
 	}
 	
