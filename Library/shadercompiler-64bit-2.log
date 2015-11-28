@@ -521,3 +521,7 @@ Cmd: compileSnippet
   api=8 type=1 insize=701 outsize=983 kw= pd=UNITY_NO_SCREENSPACE_SHADOWS UNITY_NO_LINEAR_COLORSPACE ok=1
 Cmd: compileSnippet
   api=4 type=1 insize=1032 outsize=1526 kw= pd= ok=1
+Cmd: compileSnippet
+  api=4 type=0 insize=1705 outsize=2038 kw=SOFTPARTICLES_ON pd= ok=1
+Cmd: compileSnippet
+  api=4 type=1 insize=1705 outsize=1615 kw=SOFTPARTICLES_ON pd= ok=1

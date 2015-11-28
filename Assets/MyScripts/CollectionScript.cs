@@ -30,8 +30,14 @@ public class CollectionScript : MonoBehaviour {
         {
             GameObject.Find("EndGame").GetComponent<EndGame>().Run();
         }
-
-        CollectableText.text = neededCollectable.ToString() + " needed";
+        if (levelController.LevelID != 0)
+        {
+            CollectableText.text = neededCollectable.ToString() + " needed";
+        }
+        else
+        {
+            CollectableText.text = "Power at 0";
+        }
 	}
 
     void OnTriggerEnter(Collider other)
