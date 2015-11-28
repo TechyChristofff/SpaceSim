@@ -19,7 +19,9 @@ public class ShipController : MonoBehaviour
 
     public Vector3 cameraOffset; //I use (0,1,-3)
 
-    public ParticleSystem part;
+    ParticleSystem part;
+    public float safeTime;
+    float safeTimer = 0;
 
     void Start()
     {
@@ -44,12 +46,15 @@ public class ShipController : MonoBehaviour
 
         if (levelController.LevelID != 0 && alive)
         {
-            GetComponent<SphereCollider>().enabled = false;
+            if (safeTimer > safeTime)
+                GetComponent<SphereCollider>().enabled = false;
+            safeTimer += Time.deltaTime;
             move = true;
         }
         else
         {
             GetComponent<SphereCollider>().enabled = true; ;
+            safeTimer  = 0;
             move = false;
         }
 

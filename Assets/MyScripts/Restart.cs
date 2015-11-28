@@ -15,6 +15,7 @@ public class Restart : MonoBehaviour {
 
     void OnTriggerEnter(Collider other)
     {
-        Application.LoadLevel(0);
+        if (other.name == "PlayerMesh")
+            Application.LoadLevel(0);
     }
 }
