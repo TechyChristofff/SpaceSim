@@ -36,9 +36,9 @@ public class LevelOptions : MonoBehaviour {
 		    Easy._mLevelId = 1;
 			Easy._mLevelLabel = "Easy";
 			Easy._mLevelTime = 120;
-			Easy._mAsteroidCount = 600;
+			Easy._mAsteroidCount = 0;//600
 			Easy._mAsteroidSpeed = 400;
-			Easy._mCollectableNeeded = 40;
+			Easy._mCollectableNeeded = 1;
 			Easy._mCollectableNumber = 100;
 			Easy._mSphereradius = 4500;
 			Easy._mMoveChance = 3;
@@ -50,7 +50,7 @@ public class LevelOptions : MonoBehaviour {
 			Med._mLevelTime = 90;
 			Med._mAsteroidCount = 800;
 			Med._mAsteroidSpeed = 500;
-			Med._mCollectableNeeded = 50;
+			Med._mCollectableNeeded = 10;
 			Med._mCollectableNumber = 90;
 			Med._mSphereradius = 4500;
 			Med._mMoveChance = 2;
@@ -62,7 +62,7 @@ public class LevelOptions : MonoBehaviour {
 			Hard._mLevelTime = 60;
 			Hard._mAsteroidCount = 1000;
 			Hard._mAsteroidSpeed = 600;
-			Hard._mCollectableNeeded = 60;
+			Hard._mCollectableNeeded = 15;
 			Hard._mCollectableNumber = 80;
 			Hard._mSphereradius = 4500;
 			Hard._mMoveChance = 2;

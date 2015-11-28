@@ -26,6 +26,11 @@ public class CollectionScript : MonoBehaviour {
             neededCollectable = levelController.CollecableNeeded;
         }
 
+        if (neededCollectable < 1 && levelController.LevelID != 0)
+        {
+            GameObject.Find("EndGame").GetComponent<EndGame>().Run();
+        }
+
         CollectableText.text = neededCollectable.ToString() + " needed";
 	}
 
