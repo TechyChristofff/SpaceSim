@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class MenuDisplay : MonoBehaviour {
@@ -22,11 +23,11 @@ public class MenuDisplay : MonoBehaviour {
             if (transform.localPosition.y < 0)
             {
                 display.localPosition -= new Vector3(0, -Time.deltaTime * fadeSpeed, 0);
-
             }
             else
             {
                 display.localPosition = new Vector3(0, 0, 0);
+                EnableComps(true);
             }
         }
         else
@@ -38,7 +39,16 @@ public class MenuDisplay : MonoBehaviour {
             else
             {
                 display.localPosition = new Vector3(0, -offset, 0);
+                EnableComps(false);
             }
+        }
+    }
+
+    void EnableComps(bool set)
+    {
+        foreach (Button comp in GetComponentsInChildren<Button>())
+        {
+            comp.enabled = set;
         }
     }
 }
